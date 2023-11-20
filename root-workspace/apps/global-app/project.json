@@ -1,0 +1,68 @@
+{
+  "name": "global-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/global-app",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/global-app",
+        "assets": [
+          {
+            "input": "root-workspace/libs/shared/assets/src/index.ts",
+            "glob": "**/*.!(ts)",
+            "output": "./src"
+          }
+        ]
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/global-app"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "global-app:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "global-app:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "global-app:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "global-app:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/global-app/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/global-app/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

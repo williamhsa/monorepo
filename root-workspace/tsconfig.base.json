@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@root-workspace/assets": ["libs/shared/assets/src/index.ts"],
+      "@root-workspace/components": ["libs/shared/components/src/index.ts"],
+      "@root-workspace/components/server": [
+        "libs/shared/components/src/server.ts"
+      ],
+      "@root-workspace/home": ["libs/home/src/index.ts"],
+      "@root-workspace/home/server": ["libs/home/src/server.ts"],
+      "@root-workspace/login": ["libs/login/src/index.ts"],
+      "@root-workspace/login/server": ["libs/login/src/server.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
